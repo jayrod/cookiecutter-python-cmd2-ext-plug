@@ -1,0 +1,10 @@
+{
+  "project_slug" : "cmd2-example-plugin",
+  "plugin_name" : "sample_plugin",
+  "plugin_author" : "Author V. Authorian",
+  "plugin_version" : "0.1.0",
+  "plugin_description" : "Simple CMD2 plugin using pluginlib library",
+  "plugin_entry_point" : "cmd2_plugins",
+  "base_app" : "cmd2_base_app",
+  "base_app_version" : "0.1.0"
+}
