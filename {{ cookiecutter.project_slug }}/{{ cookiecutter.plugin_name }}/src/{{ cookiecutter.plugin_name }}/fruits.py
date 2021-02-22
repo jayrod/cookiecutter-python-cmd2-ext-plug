@@ -7,7 +7,9 @@ class LoadableFruits(CommandSet, BaseCommandSet):
         super().__init__()
 
     def do_apple(self, _: Statement):
+        spec_setting = self._cmd.special_setting
         self._cmd.poutput('Apple')
+        self._cmd.poutput(f'Special setting : {spec_setting}')
 
     def do_banana(self, _: Statement):
         self._cmd.poutput('Banana')

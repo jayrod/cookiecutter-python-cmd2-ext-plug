@@ -13,6 +13,7 @@ Features of generated Applications
 --------
 * Base Application
 * Plugin
+* Plugin Settables
 
 Quickstart
 ----------
@@ -26,4 +27,16 @@ Generate a Python package project::
 
     cookiecutter https://github.com/jayrod/cookiecutter-python-cmd2-ext-plug.git
 
+
+Reasoning
+---------
+
+I wanted to create a more advanced usage example for Cmd2 applications. Through the use of 
+the [pluginlib](https://pypi.org/project/pluginlib/) library you can create an extremely 
+dynamic cmd2 application. Each plugin created must be installed as a separate application
+but will be available in the main cmd2 application. 
+
+
+This format makes it easy to create a stand alone plugin application while allowing a 
+developer to create a composite application based on installed plugins.
 

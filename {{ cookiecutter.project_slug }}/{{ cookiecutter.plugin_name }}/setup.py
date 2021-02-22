@@ -19,7 +19,6 @@ setup(
     author='{{ cookiecutter.plugin_author }}',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    #py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
     py_modules=[Path(f).stem for f in iglob('src/*.py')],
     zip_safe=False,
     python_requires='>=3.6',
@@ -30,7 +29,10 @@ setup(
         '{{ cookiecutter.plugin_entry_point }}' : [
             'fruits = {{ cookiecutter.plugin_name }}.fruits:LoadableFruits',
             'vegetables = {{ cookiecutter.plugin_name }}.vegetables:LoadableVegetables'
+            ],
+     '{{ cookiecutter.settable_entry_point }}' : [
+            'settables = {{ cookiecutter.plugin_name }}.settables:ProduceSettables',
             ]
-
-            },
+        
+    },
 )

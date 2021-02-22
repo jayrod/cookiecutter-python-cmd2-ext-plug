@@ -5,6 +5,7 @@
   "plugin_version" : "0.1.0",
   "plugin_description" : "Simple CMD2 plugin using pluginlib library",
   "plugin_entry_point" : "cmd2_plugins",
+  "settable_entry_point" : "cmd2_settables",
   "base_app" : "cmd2_base_app",
   "base_app_version" : "0.1.0"
 }

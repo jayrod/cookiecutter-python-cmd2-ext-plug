@@ -15,14 +15,27 @@ A simple application using cmd2 which demonstrates 8 key features:
 import argparse
 
 import cmd2
-from cmd2 import with_argparser, with_category, CommandSet
+from cmd2 import with_argparser, with_category, CommandSet, Cmd
 from {{ cookiecutter.base_app }}.common.screen import banner
-
-
-
 from typing import Optional, Iterable
+from pluginlib import PluginLoader
 
-class App(cmd2.Cmd):
+
+def add_settables_from_plugin(cmd: Cmd):
+    """ this function will search for plugins with an entrypoint of 
+    cmd2_settables and then add settables from them """
+
+    #get all external plugins
+    loader = PluginLoader(entry_point='cmd2_settables')
+    plugins = loader.plugins
+
+    #If there were any 'Settables' plugins 
+    if 'Settables' in plugins.keys():
+         
+        settable_plugins = [o() for o in plugins.Settables.values()]
+        [p.set(cmd) for p in settable_plugins]
+
+class App(Cmd):
     """A simple cmd2 application."""
 
     def __init__(self, command_sets: Optional[Iterable[CommandSet]] = None):
@@ -33,7 +46,9 @@ class App(cmd2.Cmd):
 
         #set banner
         self.intro = banner()
-        
+
+        #Add settables from external plugins
+        add_settables_from_plugin(self)
 
         # Make maxrepeats settable at runtime
         self.maxrepeats = 3
