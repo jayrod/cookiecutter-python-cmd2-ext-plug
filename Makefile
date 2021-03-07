@@ -3,6 +3,7 @@ BAKE_OPTIONS=--no-input
 help:
 	@echo "bake 	generate project using defaults"
 	@echo "clean 	cleans out old generated files"
+	@echo "inst 	installs generated app"
 
 clean:
 	rm -rf cmd2-example-plugin
