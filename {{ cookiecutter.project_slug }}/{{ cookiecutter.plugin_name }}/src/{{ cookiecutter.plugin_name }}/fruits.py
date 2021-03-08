@@ -6,6 +6,7 @@ class LoadableFruits(CommandSet, BaseCommandSet):
     def __init__(self):
         super().__init__()
 
+
     def do_apple(self, _: Statement):
         spec_setting = self._cmd.special_setting
         self._cmd.poutput('Apple')
@@ -13,3 +14,13 @@ class LoadableFruits(CommandSet, BaseCommandSet):
 
     def do_banana(self, _: Statement):
         self._cmd.poutput('Banana')
+
+    def do_really_like_apples(self, _:Statement):
+        apple_setting = self._cmd.config['apple'].getboolean('like')
+
+        if apple_setting:
+            self._cmd.poutput('I really, really Like apples')
+        else:
+            self._cmd.poutput('I really, really do not Like apples')
+
+        

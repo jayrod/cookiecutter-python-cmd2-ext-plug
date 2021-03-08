@@ -19,6 +19,8 @@ from cmd2 import with_argparser, with_category, CommandSet, Cmd
 from {{ cookiecutter.base_app }}.common.screen import banner
 from typing import Optional, Iterable
 from pluginlib import PluginLoader
+from configparser import ConfigParser
+from importlib_resources import files
 
 
 def add_settables_from_plugin(cmd: Cmd):
@@ -54,6 +56,17 @@ class App(Cmd):
         self.maxrepeats = 3
         self.add_settable(cmd2.Settable('maxrepeats', int, 'max repetitions for speak command'))
 
+        self.config = self._read_init()
+
+        
+    def _read_init(self) -> ConfigParser:
+        #load config file from package resource
+        config_file = files('{{ cookiecutter.base_app }}.resources').joinpath('config.ini')
+        cp = ConfigParser()
+        cp.read(str(config_file))
+        return cp
+
+
     speak_parser = argparse.ArgumentParser()
     speak_parser.add_argument('-p', '--piglatin', action='store_true', help='atinLay')
     speak_parser.add_argument('-s', '--shout', action='store_true', help='N00B EMULATION MODE')
@@ -78,4 +91,12 @@ class App(Cmd):
     # orate is a synonym for speak which takes multiline input
     do_orate = do_speak
 
+
+    def do_like_apples(self, _):
+        apple_setting = self.config['apple'].getboolean('like')
+
+        if apple_setting:
+            self.poutput("I love applese")
+        else:
+            self.poutput("I Hate apples")
 
