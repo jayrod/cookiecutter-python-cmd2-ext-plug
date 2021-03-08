@@ -14,6 +14,7 @@ Features of generated Applications
 * Base Application
 * Plugin
 * Plugin Settables
+* Application config file
 
 Quickstart
 ----------
